@@ -10,6 +10,10 @@
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="module">
+      import SyncLoader from "https://esm.sh/react-spinners@0.7.0/SyncLoader?deps=react@18.2.0";
+      window.SyncLoader = SyncLoader;
+    </script>
     <script src="api.js"></script>
     <script type="text/babel" src="chatbot.js"></script>
     <script type="text/babel">

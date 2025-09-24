@@ -1,4 +1,4 @@
-function ChatInput({ chatMessages, setChatMessages }) {
+function ChatInput({ chatMessages, setChatMessages, setLoading }) {
   const [inputText, setInputText] = React.useState("");
 
   function saveInput(event) {
@@ -15,9 +15,12 @@ function ChatInput({ chatMessages, setChatMessages }) {
       },
     ];
     setChatMessages(newChatmessages);
+    setInputText("");
+    setLoading(true);
     const chatbotResponse = await getAiMessage({
       inputMessage: inputText,
     });
+    setLoading(false);
     setChatMessages([
       ...newChatmessages,
       {
@@ -26,8 +29,6 @@ function ChatInput({ chatMessages, setChatMessages }) {
         id: crypto.randomUUID(),
       },
     ]);
-
-    setInputText("");
   }
 
   return (
@@ -46,7 +47,7 @@ function ChatInput({ chatMessages, setChatMessages }) {
   );
 }
 
-function ChatMessage({ message, role }) {
+function ChatMessage({ message, role, loading }) {
   return (
     <div
       className={
@@ -56,13 +57,19 @@ function ChatMessage({ message, role }) {
       {role === "assistant" && (
         <img className="chatbot-icon" src="chatbot-icon.png" />
       )}
-      <div className="chat-message-text">{message}</div>
+      <div className="chat-message-text">
+        {loading ? (
+          <SyncLoader size={8} color="#303030" speedMultiplier={20} />
+        ) : (
+          message
+        )}
+      </div>
       {role === "user" && <img className="user-icon" src="profile.svg" />}
     </div>
   );
 }
 
-function ChatMessages({ chatMessages }) {
+function ChatMessages({ chatMessages, loading }) {
   const chatMessagesRef = React.useRef(null);
   React.useEffect(() => {
     const containerElem = chatMessagesRef.current;
@@ -79,14 +86,17 @@ function ChatMessages({ chatMessages }) {
             message={chatMessage.content}
             role={chatMessage.role}
             key={chatMessage.id}
+            loading={false}
           />
         );
       })}
+      {loading && <ChatMessage message="" role="assistant" loading={loading} />}
     </div>
   );
 }
 
 function App() {
+  const [loading, setLoading] = React.useState(false);
   const [chatMessages, setChatMessages] = React.useState([
     {
       content: "What's up ding dong",
@@ -97,10 +107,11 @@ function App() {
 
   return (
     <div className="app-container">
-      <ChatMessages chatMessages={chatMessages} />{" "}
+      <ChatMessages chatMessages={chatMessages} loading={loading} />{" "}
       <ChatInput
         chatMessages={chatMessages}
         setChatMessages={setChatMessages}
+        setLoading={setLoading}
       />
     </div>
   );
