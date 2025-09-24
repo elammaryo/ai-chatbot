@@ -23,5 +23,3 @@ The chatbot takes user input, sends it to a backend API (Express server), which 
 
 **AI API:**  
 - [AIML API](https://aimlapi.com/) (supports models like `google/gemma-3n-e4b-it`, `mistral-7b`, etc.)  
-
-## 📂 Project Structure  
