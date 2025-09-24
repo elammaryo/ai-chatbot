@@ -38,6 +38,11 @@ function ChatInput({ chatMessages, setChatMessages, setLoading }) {
         placeholder="Send a message to Chatbot"
         size="30"
         onChange={saveInput}
+        onKeyPress={(event) => {
+          if (event.key == "Enter") {
+            sendMessage();
+          }
+        }}
         value={inputText}
       />
       <button className="send-button" onClick={sendMessage}>
