@@ -64,7 +64,7 @@
       }
 
       .chatbot-icon {
-        width: 50px;
+        width: 60px;
       }
 
       .user-icon {
@@ -86,7 +86,7 @@
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
-
+    <script type="module" src="api.js"></script>
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
       function ChatInput({ chatMessages, setChatMessages }) {
@@ -96,22 +96,24 @@
           setInputText(event.target.value);
         }
 
-        function sendMessage() {
+        async function sendMessage() {
           const newChatmessages = [
             ...chatMessages,
             {
-              message: inputText,
-              sender: "user",
+              content: inputText,
+              role: "user",
               id: crypto.randomUUID(),
             },
           ];
           setChatMessages(newChatmessages);
-          const response = Chatbot.getResponse(inputText);
+          const chatbotResponse = await getAiMessage({
+            inputMessage: inputText,
+          });
           setChatMessages([
             ...newChatmessages,
             {
-              message: response,
-              sender: "chatbot",
+              content: chatbotResponse,
+              role: "assistant",
               id: crypto.randomUUID(),
             },
           ]);
@@ -135,22 +137,20 @@
         );
       }
 
-      function ChatMessage({ message, sender }) {
+      function ChatMessage({ message, role }) {
         return (
           <div
             className={
-              sender === "chatbot"
+              role === "assistant"
                 ? "chat-message-chatbot"
                 : "chat-message-user"
             }
           >
-            {sender === "chatbot" && (
-              <img className="chatbot-icon" src="chatbot-icon.jpg" />
+            {role === "assistant" && (
+              <img className="chatbot-icon" src="chatbot-icon.png" />
             )}
             <div className="chat-message-text">{message}</div>
-            {sender === "user" && (
-              <img className="user-icon" src="profile.svg" />
-            )}
+            {role === "user" && <img className="user-icon" src="profile.svg" />}
           </div>
         );
       }
@@ -169,8 +169,8 @@
             {chatMessages.map((chatMessage) => {
               return (
                 <ChatMessage
-                  message={chatMessage.message}
-                  sender={chatMessage.sender}
+                  message={chatMessage.content}
+                  role={chatMessage.role}
                   key={chatMessage.id}
                 />
               );
@@ -182,13 +182,11 @@
       function App() {
         const [chatMessages, setChatMessages] = React.useState([
           {
-            message: "What's up ding dong",
-            sender: "chatbot",
+            content: "What's up ding dong",
+            role: "assistant",
             id: crypto.randomUUID(),
           },
         ]);
-        // const chatMessages = array[0]; // intial data
-        // const setChatMessages = array[1]; // the updater function
 
         return (
           <div className="app-container">
