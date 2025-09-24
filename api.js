@@ -1,6 +1,6 @@
 const baseURL = "http://localhost:3000";
 
-export async function getAiMessage({ inputMessage }) {
+async function getAiMessage({ inputMessage }) {
   try {
     const response = await fetch(`${baseURL}/chatbot/aiChatResponse`, {
       method: "POST",
