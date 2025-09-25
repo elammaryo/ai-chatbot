@@ -1,0 +1,26 @@
+{
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "A lightweight AI-powered chatbot built with **React**, **Express.js**, and **Node.js**.   The chatbot takes user input, sends it to a backend API (Express server), which then calls **AIML API** (or any LLM endpoint you configure) and returns the model's response back to the UI.",
+  "main": "chatbot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elammaryo/chatbot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elammaryo/chatbot/issues"
+  },
+  "homepage": "https://github.com/elammaryo/chatbot#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0"
+  }
+}
