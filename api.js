@@ -1,4 +1,4 @@
-const baseURL = process.env.REACT_APP_BASE_URL;
+const baseURL = "https://ai-chatbot-kcyl.onrender.com";
 
 async function getAiMessage({ inputMessage }) {
   try {
