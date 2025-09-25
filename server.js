@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-app.use(cors({ origin: ["http://localhost:5501", "http://127.0.0.1:5501"] }));
+app.use(cors({ origin: ["https://ai-brobot.netlify.app/"] }));
 app.use(express.json());
 
 app.post("/chatbot/aiChatResponse", async (request, response) => {
