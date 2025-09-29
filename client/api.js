@@ -1,4 +1,4 @@
-const baseURL = "https://ai-chatbot-kcyl.onrender.com";
+const baseURL = "http://localhost:3000";
 
 async function getAiMessage(allMessages) {
   try {
