@@ -17,9 +17,8 @@ function ChatInput({ chatMessages, setChatMessages, setLoading }) {
     setChatMessages(newChatmessages);
     setInputText("");
     setLoading(true);
-    const chatbotResponse = await getAiMessage({
-      inputMessage: inputText,
-    });
+    console.log(chatMessages);
+    const chatbotResponse = await getAiMessage(chatMessages);
     setLoading(false);
     setChatMessages([
       ...newChatmessages,

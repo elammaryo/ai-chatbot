@@ -19,8 +19,8 @@ app.post("/chatbot/aiChatResponse", async (request, response) => {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: "google/gemma-3n-e4b-it",
-        messages: [request.body],
+        model: "google/gemma-3-4b-it",
+        messages: request.body,
         temperature: 0.7,
         max_tokens: 256,
       }),
