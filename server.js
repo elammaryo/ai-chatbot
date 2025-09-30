@@ -22,7 +22,10 @@ app.post("/chatbot/aiChatResponse", async (request, response) => {
         model: "google/gemma-3-4b-it",
         messages: request.body,
         temperature: 0.7,
-        max_tokens: 256,
+        top_p: 0.7,
+        frequency_penalty: 1,
+        max_tokens: 1536,
+        top_k: 50,
       }),
     });
 
