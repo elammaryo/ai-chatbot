@@ -108,7 +108,8 @@ function App() {
   const [loading, setLoading] = React.useState(false);
   const [chatMessages, setChatMessages] = React.useState([
     {
-      content: "What's up ding dong",
+      content:
+        "Hey, I'm Brobot your AI assistant. Ask me something and I'll see if I feel like helping.",
       role: "assistant",
       id: crypto.randomUUID(),
     },
