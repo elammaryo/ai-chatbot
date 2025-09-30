@@ -20,7 +20,19 @@ app.post("/chatbot/aiChatResponse", async (request, response) => {
       },
       body: JSON.stringify({
         model: "google/gemma-3-4b-it",
-        messages: request.body,
+        messages: [
+          {
+            role: "user",
+            content: process.env.ADMIN_PROMPT,
+            id: crypto.randomUUID(),
+          },
+          {
+            role: "user",
+            content: process.env.ADMIN_PROMPT_2,
+            id: crypto.randomUUID(),
+          },
+          ...request.body,
+        ],
         temperature: 0.7,
         top_p: 0.7,
         frequency_penalty: 1,
