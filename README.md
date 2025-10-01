@@ -1,7 +1,11 @@
 # 🤖 AI Chatbot  
 
 A lightweight AI-powered chatbot built with **React**, **Express.js**, and **Node.js**.  
-The chatbot takes user input, sends it to a backend API (Express server), which then calls **AIML API** and returns the model's response back to the UI.  
+The chatbot takes user input, sends it to a backend API (Express server), which then calls **AIML API** and returns the model's response back to the UI.
+
+Try it out here!
+
+https://ai-brobot.netlify.app
 
 ## ✨ Features  
 - 🗨️ **Interactive Chat UI** – Messages from user and AI are styled differently, with proper alignment and icons.  
