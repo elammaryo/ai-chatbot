@@ -19,7 +19,7 @@ app.post("/chatbot/aiChatResponse", async (request, response) => {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: "google/gemma-3-4b-it",
+        model: "openai/gpt-oss-120b",
         messages: [
           {
             role: "user",
