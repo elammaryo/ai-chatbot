@@ -109,7 +109,7 @@ function App() {
   const [chatMessages, setChatMessages] = React.useState([
     {
       content:
-        "Hey, I'm Brobot your AI assistant. I'm ready to answer questions, brainstorm, or just chat. How can I help today?",
+        "Hey, I'm Brobot your AI assistant. I'm ready to answer questions, brainstorm, or just chat. How can I help today? \n\nNote:\n My first response may take a few seconds. Please be patient with me :)",
       role: "assistant",
       id: crypto.randomUUID(),
     },
