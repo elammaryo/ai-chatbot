@@ -17,13 +17,7 @@ function ChatInput({ chatMessages, setChatMessages, setLoading }) {
     setChatMessages(newChatmessages);
     setInputText("");
     setLoading(true);
-    const chatbotResponse = await getAiMessage(
-      newChatmessages.filter((item, i) => {
-        if (i != 0) {
-          return item;
-        }
-      })
-    );
+    const chatbotResponse = await getOpenAiMessage(newChatmessages);
     setLoading(false);
     setChatMessages([
       ...newChatmessages,

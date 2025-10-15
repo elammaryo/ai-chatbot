@@ -1,21 +1,4 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const app = express();
-app.use(
-  cors({
-    origin: [
-      "https://ai-brobot.netlify.app",
-      "https://omerelammary.netlify.app",
-    ],
-  })
-);
-app.use(express.json());
-
-app.post("/chatbot/aiChatResponse", async (request, response) => {
+export async function getAiMlResponse(request, response) {
   const uri = "https://api.aimlapi.com/v1/chat/completions";
   const apiKey = process.env.AIML_API_KEY;
   try {
@@ -60,6 +43,4 @@ app.post("/chatbot/aiChatResponse", async (request, response) => {
   } catch (e) {
     console.error(e);
   }
-});
-
-app.listen(3000, () => console.log("API on http://localhost:3000"));
+}
