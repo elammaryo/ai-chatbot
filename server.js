@@ -12,6 +12,7 @@ app.use(
     origin: [
       "https://ai-brobot.netlify.app",
       "https://omerelammary.netlify.app",
+      "https://omerelammary.com",
     ],
   })
 );
